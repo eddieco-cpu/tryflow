@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>
+        This is Menu page
+    </h1>
+    <nav>
+        <a href="./index.html">home</a>
+        <a href="./about.html">about</a>
+        <a href="./menu.html">menu</a>
+        <a href="./video.html">video</a>
+    </nav>
+    <hr>
+
+    <section>
+        <div class="img_arr"></div>
+        <h2 class="type"></h2>
+        <h5 class="name"></h5>
+        <p class="des"></p>
+    </section>
+
+    <script>
+        let products = [
+            {
+                id: 'executive',
+                imgs: [
+                'https://static.wixstatic.com/media/24a6ff_f0f3de60e268490585ac884cde2c47d3~mv2.png/v1/crop/x_159,y_292,w_1285,h_2127/fill/w_365,h_600,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/King-Kong_%E6%AD%A3_%E5%85%A8%E7%B6%B2.png',
+                'https://static.wixstatic.com/media/24a6ff_364e4d1842724aa3b7cc6468a63abe23~mv2.png/v1/crop/x_15,y_75,w_1473,h_2189/fill/w_399,h_593,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/King-Kong_%E6%AD%A3%E5%81%B4_%E5%85%A8%E7%B6%B2.png',
+                'https://static.wixstatic.com/media/24a6ff_1778bbf4ca91402887faa04bf2173fff~mv2.png/v1/crop/x_153,y_31,w_1436,h_2316/fill/w_373,h_600,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/King-Kong_%E6%AD%A3%E8%83%8C_%E5%85%A8%E7%B6%B2.png'
+                ],
+                type: 'Executive Chair 旗艦椅',
+                name: '商業叢林的王者風範',
+                des: '全⽅位調節的人體工學旗艦椅款，鋁合⾦ 4D 調節扶手， 2D 調節頭枕，精密線控底盤，高強度絞簧腰靠設計，給予用戶強而有力的全面支撐性能。'
+            },
+            {
+                id: 'ergonomic',
+                imgs: [
+                'https://static.wixstatic.com/media/24a6ff_9b0c043d952847ea81b13ff388865930~mv2.png/v1/crop/x_337,y_0,w_1709,h_2789/fill/w_388,h_633,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/IMG_4854.png',
+                'https://static.wixstatic.com/media/24a6ff_7a2d8d8dda7b4e97aaeb4cbed662c6e6~mv2.png/v1/crop/x_203,y_0,w_1748,h_2854/fill/w_378,h_613,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/IMG_4850.png',
+                'https://static.wixstatic.com/media/24a6ff_947f7b01658a431380bda555cdc64f7a~mv2.png/v1/crop/x_252,y_0,w_1744,h_2846/fill/w_388,h_633,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/IMG_4844.png'
+                ],
+                type: 'Ergonomic Chair 工學椅／辦公椅',
+                name: '厚實圓潤，有如沈入棕熊柔軟的懷抱',
+                des: '具有強力支撐的彈性網布讓椅背得以保留簡潔圓潤的外型，在職場上辛勤勞神的路途上，有一個溫暖厚實的擁抱支持著你。'
+            },
+            {
+                id: 'training',
+                imgs: [
+                'https://static.wixstatic.com/media/24a6ff_8903bb56f92d424ab95657768b3ed4c9~mv2.png/v1/fill/w_565,h_624,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/X34_%E6%AD%A3%E5%B7%A645_%E6%9C%89%E6%89%B6%E6%89%8B%2B%E5%AF%AB%E5%AD%97%E6%9D%BF.png',
+                'https://static.wixstatic.com/media/24a6ff_f00049d056874f25ad2d1052184e2b10~mv2.png/v1/fill/w_750,h_500,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/X34_%E6%AD%A3%E5%B7%A6%E5%81%B4.png',
+                'https://static.wixstatic.com/media/24a6ff_fe8328975fbc4cdfbdd6e03cb03d2aa3~mv2.png/v1/fill/w_808,h_538,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/X34_%E6%AD%A3%E5%B7%A645_%E6%9C%89%E6%89%B6%E6%89%8B.png'
+                ],
+                type: '​Training Chair  培訓椅',
+                name: '機能與外觀兼備，高級商務培訓首選​​',
+                des: '由曾經幫 Herman Miller POSH 設計椅款的設計師 Wayne 所設計，渾圓造型收斂至兩側，培訓場合全場排開，如同企鵝般集體出沒，討人喜愛。'
+            }
+        ]
+        let product
+
+    let parsingURL = new URL(window.location.toString())
+    let params = parsingURL.searchParams
+    if( params.has('id') && params.get('id') ) {
+        product = products.find(el => el.id === params.get('id'))
+    } else {
+        history.go(-1)
+    }
+
+    let imgArr = ''
+    if(product) {
+        product.imgs.forEach(itm => {
+            imgArr += `<img src=${itm} alt="">`
+        })
+        document.querySelector('.img_arr').innerHTML = imgArr
+        document.querySelector('.type').innerText = product.type
+        document.querySelector('.name').innerText = product.name
+        document.querySelector('.des').innerText = product.des
+    }
+    </script>
+</body>
+</html>
